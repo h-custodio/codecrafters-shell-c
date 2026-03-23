@@ -15,7 +15,7 @@ char* extractArg(const char *input, int delim_index) {
   // Extracts the first word from input
   strncpy(com_arg, input, delim_index);
   // End string with null terminator
-  //com_arg[delim_index] = '\0';
+  com_arg[delim_index] = '\0';
 
   return com_arg;
 }
@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
       } else if (strcmp(argument, "exit") == 0) {
           printf("%s is a shell builtin\n", argument);
       } else {
-          printf("%s: input not found\n", argument);
+          printf("%s: 101 input not found\n", argument);
       }
       free(argument);
     } else if (strcmp(input, "exit") == 0) {
