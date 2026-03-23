@@ -61,16 +61,14 @@ int main(int argc, char *argv[]) {
     // IF tree
     if (strcmp(command, "type") == 0) {
       char *argument_list = extractArgList(command); 
-      char *argument = extractArg(argument_list);
-      if (strcmp(argument, "echo") == 0) {
-        printf("%s is a shell builtin\n", argument);
-      } else if (strcmp(argument, "exit") == 0) {
-          printf("%s is a shell builtin\n", argument);
+      if (strcmp(argument_list, "echo") == 0) {
+        printf("%s is a shell builtin\n", argument_list);
+      } else if (strcmp(argument_list, "exit") == 0) {
+          printf("%s is a shell builtin\n", argument_list);
       } else {
-          printf("%s: input not found\n", argument);
+          printf("%s: input not found\n", argument_list);
       }
       free(argument_list);
-      free(argument);
     } else if (strcmp(input, "exit") == 0) {
         exit(0);
     } else if (strcmp(command, "echo") == 0) {
