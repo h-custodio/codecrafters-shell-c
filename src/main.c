@@ -24,14 +24,9 @@ int main(int argc, char *argv[]) {
     if (strcmp(command, "exit") == 0) {
       exit(0);
     } else if (strcmp(com_arg, "echo") == 0) {
-      char *token = strtok(command, " ");
-      while (token != NULL) {
-        if (strcmp(token, com_arg) == 1) {
-          printf(token);
-        }
-        token = strtok(NULL, " ");
-      }
-      //printf(command);
+      char arg_list[100] = "";
+      strncat(arg_list, command + space_index, strlen(command));
+      printf(arg_list);
       printf("\n");
     } else {
       printf("%s: command not found", command);
