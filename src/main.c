@@ -8,12 +8,15 @@ int main(int argc, char *argv[]) {
   // TODO: Uncomment the code below to pass the first stage
   printf("$ ");
 
-  // Initialize a char type variable named 'str' with the size 100 to as as a string
-  char input* = malloc(100);
+  // Initialize input variable and take user input
+  char input[1024];
   fgets(input, sizeof(input), stdin);
 
+  //remove trailing newline
+  command[strcspn(command, "\n")] = '\0';
+
   if (input == input) {
-    printf("{command}: command not found")
+    printf("{command}: command not found");
   }
   
 
