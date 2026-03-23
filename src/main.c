@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
   //remove trailing newline
   command[strcspn(command, "\n")] = '\0';
 
-  printf("invalid_orange_command: command not found command not found");
+  printf("invalid_orange_command: command not found");
   
   
 
