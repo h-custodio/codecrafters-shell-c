@@ -33,7 +33,8 @@ char* extractArgList(const char *command, int delim_index) {
   if (!arg_list) return NULL;
 
   // Extracts the arguments after the first word
-  strcpy(arg_list, command + delim_index + 1);
+  //strcpy(arg_list, command + delim_index + 1);
+  strncat(arg_list, command + delim_index + 1, strlen(command));
 
   // End string with null terminator
   arg_list[delim_index] = '\0';
@@ -59,7 +60,7 @@ int main(int argc, char *argv[]) {
 
     // IF tree
     if (strcmp(command, "type") == 0) {
-      char *argument = extractArgList(command, findDelimIndex(command)); 
+      char *argument = extractArg(extractArgList(command, findDelimIndex(command)),findDelimIndex(command)); 
       if (strcmp(argument, "echo") == 0) {
         printf("%s is a shell builtin\n", argument);
       } else if (strcmp(argument, "exit") == 0) {
