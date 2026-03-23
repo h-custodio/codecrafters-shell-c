@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     //remove trailing newline
     command[strcspn(command, "\n")] = '\0';
 
-    if strcmp((str1, "exit") == 0) {
+    if strcmp((command, "exit") == 0) {
       exit(1);
     } else {
       printf("%s: command not found", command);
