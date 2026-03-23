@@ -28,23 +28,25 @@ char* extractArg(const char *input) {
 
 // returns the rest of the arguments minus a substring
 char* extractArgList(const char *command) {  
-  //skip leading space
+  // Skip leading spaces
   while (*command == ' ') command++;
 
-  //skips to start of second argument
+  // Skip first word
   int first_arg = strcspn(command, " ");
   command += first_arg;
+
+  // Skip spaces after first word
   while (*command == ' ') command++;
 
-  // Initialize a dynamic char array to hold our string; Return NULL if NULL
+  // Length of remaining string
   int length = strlen(command);
+
+  // Allocate memory
   char *arg_list = malloc(length + 1);
   if (!arg_list) return NULL;
 
-  // Extracts the arguments after a substring
-  strncpy(arg_list, command + first_arg, length);
-
-  // End string with null terminator
+  // Copy remaining string
+  strncpy(arg_list, command, length);
   arg_list[length] = '\0';
 
   return arg_list;
