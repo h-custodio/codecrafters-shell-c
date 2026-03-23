@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 int findDelimIndex (const char *input) {
   return strcspn(input, " ");
@@ -43,7 +44,8 @@ int main(int argc, char *argv[]) {
     
     //finds the first argument(command)
     char *command = extractArg(input, findDelimIndex(input));
-    printf(strcmp(command, "type") == 0);
+    bool isType = strcmp(command, "type") == 0;
+    printf(isType);
 
     // IF tree
     if (strcmp(command, "type") == 0) {
