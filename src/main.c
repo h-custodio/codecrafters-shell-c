@@ -13,7 +13,9 @@ char* extractArg(const char *input, int delim_index) {
   if (!com_arg) return NULL;
 
   // Extracts the first word from input
-  strncpy(com_arg, input, delim_index);
+  strncat(com_arg, input, delim_index);
+  //strncpy(com_arg, input, delim_index);
+  
   // End string with null terminator
   com_arg[delim_index] = '\0';
 
@@ -47,7 +49,6 @@ int main(int argc, char *argv[]) {
     // IF tree
     if (strcmp(command, "type") == 0) {
       char *argument = extractArg(command, findDelimIndex(command)); 
-      printf(argument);
       if (strcmp(argument, "echo") == 0) {
         printf("%s is a shell builtin\n", argument);
       } else if (strcmp(argument, "exit") == 0) {
