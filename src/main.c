@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
       char *token = strtok(command, " ");
       while (token != NULL) {
         if (strcmp(token, com_arg) == 1) {
-          printf("%s ", token);
+          printf(token);
         }
         token = strtok(NULL, " ");
       }
