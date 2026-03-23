@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     char command[100];
     fgets(command, sizeof(command), stdin);
     //remove trailing newline
-    command[strcspn(command, "\n")] = '\0';
+    //command[strcspn(command, "\n")] = '\0';
 
     printf("%s: command not found", command);
   }
