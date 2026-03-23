@@ -24,13 +24,13 @@ int main(int argc, char *argv[]) {
     if (strcmp(command, "exit") == 0) {
       exit(0);
     } else if (strcmp(com_arg, "echo") == 0) {
-      char *token = strtok(command, " ");
-      while (token != NULL) {
-        if (strcmp(token, com_arg) == 1) {
-          printf("%s ", token);
-        }
-        token = strtok(NULL, " ");
-      }
+      // char *token = strtok(command, " ");
+      // while (token != NULL) {
+      //   if (strcmp(token, com_arg) == 1) {
+      //     printf("%s ", token);
+      //   }
+      //   token = strtok(NULL, " ");
+      // }
       printf("\n");
     } else {
       printf("%s: command not found", command);
