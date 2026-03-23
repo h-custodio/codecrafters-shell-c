@@ -37,7 +37,7 @@ char* extractArgList(const char *command) {
   if (!arg_list) return NULL;
 
   // Extracts the arguments after the first word
-  strcpy(arg_list, command, length);
+  strncpy(arg_list, command, length);
 
   return arg_list;
 }
