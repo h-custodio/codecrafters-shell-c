@@ -15,9 +15,8 @@ int main(int argc, char *argv[]) {
   //remove trailing newline
   command[strcspn(command, "\n")] = '\0';
 
-  if (input == input) {
-    printf("{command}: command not found");
-  }
+  printf("{command}: command not found");
+  
   
 
 
