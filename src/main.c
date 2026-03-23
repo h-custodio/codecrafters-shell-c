@@ -76,6 +76,7 @@ int main(int argc, char *argv[]) {
       } else if (strcmp(argument_list, "exit") == 0) {
           printf("%s is a shell builtin\n", argument_list);
       } else {
+          printf(argument_list);
           printf("%s: input not found\n", argument_list);
       }
       free(argument_list);
