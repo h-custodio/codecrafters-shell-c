@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
     } else if (strcmp(input, "exit") == 0) {
         exit(0);
     } else if (strcmp(command, "echo") == 0) {
-        printf(extractArgList(input));
+        printf("%s\n", extractArgList(input));
     } else {
         printf("%s: input not found\n", input);
     }
