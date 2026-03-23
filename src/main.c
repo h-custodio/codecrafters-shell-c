@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
     //finds the first argument(command)
     char *command = extractArg(input, findDelimIndex(input));
     bool isType = strcmp(command, "type") == 0;
-    printf(isType);
+    printf("%d\n", isType);
 
     // IF tree
     if (strcmp(command, "type") == 0) {
