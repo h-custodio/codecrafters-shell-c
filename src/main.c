@@ -21,7 +21,8 @@ int main(int argc, char *argv[]) {
     } else if (strcmp(command, "echo") == 0) {
       printf(command);
     } else {
-      printf("%s: command not found", command);
+      printf("1");
+      //printf("%s: command not found", command);
       printf("\n");
     }
   }
