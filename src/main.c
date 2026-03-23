@@ -32,12 +32,13 @@ char* extractArgList(const char *command) {
   while (*command == ' ') command++;
 
   // Initialize a dynamic char array to hold our string; Return NULL if NULL
-  int length = strcspn(command, "") + strcspn(command, " ") + 1;
+  int first_arg = strcspn(command, " ");
+  int length = strlen(command) + first_arg;
   char *arg_list = malloc(length + 1);
   if (!arg_list) return NULL;
 
   // Extracts the arguments after a substring
-  strncpy(arg_list, command, length);
+  strncpy(arg_list, command + first_arg, length);
 
   // End string with null terminator
   arg_list[length] = '\0';
