@@ -7,28 +7,37 @@ int findDelimIndex (const char *input) {
 }
 
 // Extract the a substring from the input
-char* extractArg(const char *input, int delim_index) {
+char* extractArg(const char *input) {
+  //skip leading space
+  while (*input == ' ') input++;
+
   // Initialize a dynamic char array to hold our string; Return NULL if NULL
-  char *com_arg = malloc(delim_index  + 1);
+  int length = strcspn(input, " ");
+  char *com_arg = malloc(length + 1);
   if (!com_arg) return NULL;
 
+
   // Copy the desired substring of the input
-  strncpy(com_arg, input, delim_index);
+  strncpy(com_arg, input, length);
   
   // End string with null terminator
-  com_arg[delim_index] = '\0';
+  com_arg[length] = '\0';
 
   return com_arg;
 }
 
 // returns the rest of the arguments minus the command
-char* extractArgList(const char *command, int delim_index) {  
+char* extractArgList(const char *command) {  
+  //skip leading space
+  while (*command == ' ') command++;
+
   // Initialize a dynamic char array to hold our string; Return NULL if NULL
-  char *arg_list = malloc(strlen(command - delim_index) + 1);
+  int length = strcspn(command, "");
+  char *arg_list = malloc(length + 1);
   if (!arg_list) return NULL;
 
   // Extracts the arguments after the first word
-  strcpy(arg_list, command + delim_index);
+  strcpy(arg_list, length);
 
   return arg_list;
 }
