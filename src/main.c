@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
     // IF tree
     if (strcmp(command, "type") == 0) {
       char *argument_list = extractArgList(command, findDelimIndex(command)); 
-      char *argument = extractArg(argument_list, findDelimIndex(argument_list));
+      char *argument = extractArg(argument_list, findDelimIndex(argument_list + 1));
       if (strcmp(argument, "echo") == 0) {
         printf("%s is a shell builtin\n", argument);
       } else if (strcmp(argument, "exit") == 0) {
