@@ -6,7 +6,7 @@ int main(int argc, char *argv[]) {
   // Flush after every printf
   setbuf(stdout, NULL);
 
-  if (!background) {}
+  if (!background) {
     int ret = fork();
     printf("$ ");
 
