@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
   printf("$ ");
 
   // Initialize input variable and take user input
-  char input[1024];
+  char command[1024];
   fgets(input, sizeof(input), stdin);
 
   //remove trailing newline
