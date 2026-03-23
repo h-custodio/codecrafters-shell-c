@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
     
     //finds the first argument(command)
     char *command = extractArg(input, findDelimIndex(input));
-    printf(command);
+    printf(strcmp(command, "type") == 0);
 
     // IF tree
     if (strcmp(command, "type") == 0) {
