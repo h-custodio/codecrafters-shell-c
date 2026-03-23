@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
     } else if (strcmp(command, "echo") == 0) {
         printf("%s\n", extractArgList(input));
     } else {
-        printf("%s: input not found\n", input);
+        printf("%s: command not found\n", input);
     }
 
     free(command);
