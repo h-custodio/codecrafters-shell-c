@@ -31,6 +31,7 @@ int main(int argc, char *argv[]) {
       //   }
       //   token = strtok(NULL, " ");
       // }
+      printf(command);
       printf("\n");
     } else {
       printf("%s: command not found", command);
