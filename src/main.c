@@ -47,12 +47,13 @@ int main(int argc, char *argv[]) {
     // IF tree
     if (strcmp(command, "type") == 0) {
       char *argument = extractArg(command, findDelimIndex(command)); 
+      printf(argument);
       if (strcmp(argument, "echo") == 0) {
         printf("%s is a shell builtin\n", argument);
       } else if (strcmp(argument, "exit") == 0) {
           printf("%s is a shell builtin\n", argument);
       } else {
-          printf("%s: 101 input not found\n", argument);
+          printf("%s: input not found\n", argument);
       }
       free(argument);
     } else if (strcmp(input, "exit") == 0) {
