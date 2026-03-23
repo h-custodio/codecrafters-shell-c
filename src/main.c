@@ -9,13 +9,16 @@ int findDelimIndex (const char *input) {
 // Extract the a substring from the input
 char* extractArg(const char *input) {
   //skip leading space
-  while (*input == ' ') input++;
+  while (*input == ' ') {
+    input++;
+  }
 
   // Initialize a dynamic char array to hold our string; Return NULL if NULL
   int length = strcspn(input, " ");
   char *com_arg = malloc(length + 1);
-  if (!com_arg) return NULL;
-
+  if (!com_arg) {
+    return NULL;
+  }
 
   // Copy the desired substring of the input
   strncpy(com_arg, input, length);
@@ -29,7 +32,9 @@ char* extractArg(const char *input) {
 // returns the rest of the arguments minus a substring
 char* extractArgList(const char *command) {  
   // Skip leading spaces
-  while (*command == ' ') command++;
+  while (*command == ' ') {
+    command++;
+  }
 
   // Skip first word
   int first_arg = strcspn(command, " ");
@@ -43,7 +48,9 @@ char* extractArgList(const char *command) {
 
   // Allocate memory
   char *arg_list = malloc(length + 1);
-  if (!arg_list) return NULL;
+  if (!arg_list) {
+    return NULL;
+  }
 
   // Copy remaining string
   strncpy(arg_list, command, length);
@@ -68,13 +75,18 @@ int main(int argc, char *argv[]) {
     //finds the first argument(command)
     char *command = extractArg(input);
 
-    // IF tree
+    // Command conditionals
     if (strcmp(command, "type") == 0) {
       char *argument_list = extractArgList(input); 
-      if (strcmp(argument_list, "echo") == 0 || strcmp(argument_list, "exit") == 0 || strcmp(argument_list, "type") == 0) {
+      char *path = getenv("PATH");
+      if (strcmp(argument_list, "grep") == 0 || strcmp(argument_list, "echo") == 0 || strcmp(argument_list, "exit") == 0 || strcmp(argument_list, "type") == 0) {
         printf("%s is a shell builtin\n", argument_list);
       } else {
-        printf("%s: not found\n", argument_list);
+        if (path) {
+          printf(path);
+        } else {
+          printf("%s: not found\n", argument_list);
+        }
       }
       free(argument_list);
     } else if (strcmp(input, "exit") == 0) {
