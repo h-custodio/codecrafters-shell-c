@@ -31,9 +31,13 @@ char* extractArgList(const char *command) {
   //skip leading space
   while (*command == ' ') command++;
 
-  // Initialize a dynamic char array to hold our string; Return NULL if NULL
+  //skips to start of second argument
   int first_arg = strcspn(command, " ");
-  int length = strlen(command) + first_arg;
+  command += first_arg;
+  while (*command == ' ') command++;
+
+  // Initialize a dynamic char array to hold our string; Return NULL if NULL
+  int length = strlen(command);
   char *arg_list = malloc(length + 1);
   if (!arg_list) return NULL;
 
