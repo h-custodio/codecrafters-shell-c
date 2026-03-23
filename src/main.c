@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     command[strcspn(command, "\n")] = '\0';
     
     //extracts the command to check
-    int space_index = strcspn(command, "\0");
+    int space_index = strcspn(command, " ");
     char com_arg[16] = "";
     strncat(com_arg, command, space_index);
 
