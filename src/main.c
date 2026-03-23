@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
       if (strcmp(argument_list, "echo") == 0 || strcmp(argument_list, "exit") == 0 || strcmp(argument_list, "type") == 0) {
         printf("%s is a shell builtin\n", argument_list);
       } else {
-        printf("%s: input not found\n", argument_list);
+        printf("%s: not found\n", argument_list);
       }
       free(argument_list);
     } else if (strcmp(input, "exit") == 0) {
