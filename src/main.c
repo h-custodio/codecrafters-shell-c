@@ -33,10 +33,7 @@ char* extractArgList(const char *command, int delim_index) {
   if (!arg_list) return NULL;
 
   // Extracts the arguments after the first word
-  strcpy(arg_list, command + delim_index);
-
-  // End string with null terminator
-  arg_list[delim_index] = '\0';
+  strcpy(arg_list, command + delim_index + 1);
 
   return arg_list;
 }
