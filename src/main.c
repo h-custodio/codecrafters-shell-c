@@ -6,17 +6,19 @@ int main(int argc, char *argv[]) {
   // Flush after every printf
   setbuf(stdout, NULL);
 
-  // TODO: Uncomment the code below to pass the first stage
-  printf("$ ");
+  if (!background) {}
+    int ret = fork();
+    printf("$ ");
 
-  // Initialize input variable and take user input
-  char command[100];
-  fgets(command, sizeof(command), stdin);
+    // Initialize input variable and take user input
+    char command[100];
+    fgets(command, sizeof(command), stdin);
+    //remove trailing newline
+    command[strcspn(command, "\n")] = '\0';
 
-  //remove trailing newline
-  command[strcspn(command, "\n")] = '\0';
+    printf("%s: command not found", command);
+    waitpid(ret, NULL);
+  }
 
-  printf("%s: command not found", command);
-  
   return 0;
 }
