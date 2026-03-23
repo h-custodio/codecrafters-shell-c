@@ -3,16 +3,16 @@
 #include <string.h>
 
 int findDelimIndex (const char *input) {
-  return strcspn(input, " ");
+  return strcspn(input, " \0");
 }
 
-// Extract the first argument (input)
+// Extract the a substring from the input
 char* extractArg(const char *input, int delim_index) {
   // Initialize a dynamic char array to hold our string; Return NULL if NULL
   char *com_arg = malloc(delim_index  + 1);
   if (!com_arg) return NULL;
 
-  // Extracts the first word from input
+  // Copy the desired substring of the input
   strncpy(com_arg, input, delim_index);
   
   // End string with null terminator
@@ -29,11 +29,11 @@ char* extractArgList(const char *command, int delim_index) {
   // printf("\n");
 
   // Initialize a dynamic char array to hold our string; Return NULL if NULL
-  char *arg_list = malloc(strlen(command - delim_index));
+  char *arg_list = malloc(strlen(command - delim_index) + 1);
   if (!arg_list) return NULL;
 
   // Extracts the arguments after the first word
-  strcpy(arg_list, command + delim_index + 2);
+  strcpy(arg_list, command + delim_index);
 
   return arg_list;
 }
