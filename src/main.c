@@ -56,12 +56,12 @@ int main(int argc, char *argv[]) {
     input[strcspn(input, "\n")] = '\0';
     
     //finds the first argument(command)
-    char *command = extractArg(input, findDelimIndex(input));
+    char *command = extractArg(input);
 
     // IF tree
     if (strcmp(command, "type") == 0) {
-      char *argument_list = extractArgList(command, findDelimIndex(command)); 
-      char *argument = extractArg(argument_list, findDelimIndex(argument_list + 1));
+      char *argument_list = extractArgList(command); 
+      char *argument = extractArg(argument_list);
       if (strcmp(argument, "echo") == 0) {
         printf("%s is a shell builtin\n", argument);
       } else if (strcmp(argument, "exit") == 0) {
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
     } else if (strcmp(input, "exit") == 0) {
         exit(0);
     } else if (strcmp(command, "echo") == 0) {
-        extractArgList(input, findDelimIndex(input));
+        extractArgList(input);
     } else {
         printf("%s: input not found\n", input);
     }
