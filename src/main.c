@@ -15,10 +15,14 @@ int main(int argc, char *argv[]) {
     fgets(command, sizeof(command), stdin);
     //remove trailing newline
     command[strcspn(command, "\n")] = '\0';
+    
+    int space_index = strcspn(command, "\0");
+    char com_arg[16] = "";
+    strncat(com_arg, command, space_index);
 
     if (strcmp(command, "exit") == 0) {
       exit(0);
-    } else if (strcmp(command, "echo ") == 0) {
+    } else if (strcmp(com_arg, "echo") == 0) {
       printf(command);
     } else {
       printf("%s: command not found", command);
