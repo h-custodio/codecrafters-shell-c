@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
       exit(0);
     } else if (strcmp(com_arg, "echo") == 0) {
       char arg_list[100] = "";
-      strncat(arg_list, command + space_index, strlen(command));
+      strncat(arg_list, command + space_index + 1, strlen(command));
       printf(arg_list);
       printf("\n");
     } else {
