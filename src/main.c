@@ -6,8 +6,7 @@ int main(int argc, char *argv[]) {
   // Flush after every printf
   setbuf(stdout, NULL);
 
-  if (!background) {
-    int ret = fork();
+  while (true) {
     printf("$ ");
 
     // Initialize input variable and take user input
@@ -17,7 +16,6 @@ int main(int argc, char *argv[]) {
     command[strcspn(command, "\n")] = '\0';
 
     printf("%s: command not found", command);
-    waitpid(ret, NULL);
   }
 
   return 0;
