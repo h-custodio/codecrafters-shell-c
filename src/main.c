@@ -32,7 +32,7 @@ char* extractArgList(const char *command) {
   while (*command == ' ') command++;
 
   // Initialize a dynamic char array to hold our string; Return NULL if NULL
-  int length = strcspn(command, "") - strcspn(command, " ");
+  int length = strcspn(command, "") + strcspn(command, " ");
   char *arg_list = malloc(length + 1);
   if (!arg_list) return NULL;
 
