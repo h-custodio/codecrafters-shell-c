@@ -13,8 +13,7 @@ char* extractArg(const char *input, int delim_index) {
   if (!com_arg) return NULL;
 
   // Extracts the first word from input
-  strncat(com_arg, input, delim_index);
-  //strncpy(com_arg, input, delim_index);
+  strncpy(com_arg, input, delim_index);
   
   // End string with null terminator
   com_arg[delim_index] = '\0';
@@ -22,12 +21,24 @@ char* extractArg(const char *input, int delim_index) {
   return com_arg;
 }
 
-// Prints the arguments
-void printArgList(const char *input, int delim_index) {  
-  char arg_list[100] = "";
-  strncat(arg_list, input + delim_index + 1, strlen(input));
-  printf(arg_list);
-  printf("\n");
+// returns the rest of the arguments minus the command
+char* extractArgList(const char *command, int delim_index) {  
+  // char arg_list[100] = "";
+  // strncat(arg_list, command + delim_index + 1, strlen(command));
+  // printf(arg_list);
+  // printf("\n");
+
+  // Initialize a dynamic char array to hold our string; Return NULL if NULL
+  char *arg_list = malloc(strlen(command - delim_index));
+  if (!arg_list) return NULL;
+
+  // Extracts the arguments after the first word
+  strcpy(arg_list, command + delim_index + 1);
+
+  // End string with null terminator
+  arg_list[delim_index] = '\0';
+
+  return arg_list;
 }
 
 int main(int argc, char *argv[]) {
@@ -48,7 +59,7 @@ int main(int argc, char *argv[]) {
 
     // IF tree
     if (strcmp(command, "type") == 0) {
-      char *argument = extractArg(command, findDelimIndex(command)); 
+      char *argument = extractArgList(command, findDelimIndex(command)); 
       if (strcmp(argument, "echo") == 0) {
         printf("%s is a shell builtin\n", argument);
       } else if (strcmp(argument, "exit") == 0) {
@@ -60,7 +71,7 @@ int main(int argc, char *argv[]) {
     } else if (strcmp(input, "exit") == 0) {
         exit(0);
     } else if (strcmp(command, "echo") == 0) {
-        printArgList(input, findDelimIndex(input));
+        extractArgList(input, findDelimIndex(input));
     } else {
         printf("%s: input not found\n", input);
     }
