@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
 
   // Initialize input variable and take user input
   char command[1024];
-  fgets(input, sizeof(input), stdin);
+  fgets(command, sizeof(command), stdin);
 
   //remove trailing newline
   command[strcspn(command, "\n")] = '\0';
