@@ -3,7 +3,7 @@
 #include <string.h>
 
 int findDelimIndex (const char *input) {
-  return strcspn(input, " \0");
+  return strcspn(input, " ");
 }
 
 // Extract the a substring from the input
@@ -23,11 +23,6 @@ char* extractArg(const char *input, int delim_index) {
 
 // returns the rest of the arguments minus the command
 char* extractArgList(const char *command, int delim_index) {  
-  // char arg_list[100] = "";
-  // strncat(arg_list, command + delim_index + 1, strlen(command));
-  // printf(arg_list);
-  // printf("\n");
-
   // Initialize a dynamic char array to hold our string; Return NULL if NULL
   char *arg_list = malloc(strlen(command - delim_index) + 1);
   if (!arg_list) return NULL;
@@ -56,8 +51,8 @@ int main(int argc, char *argv[]) {
 
     // IF tree
     if (strcmp(command, "type") == 0) {
-      char *argumentList = extractArgList(command, findDelimIndex(command)); 
-      char *argument = extractArg(argumentList, findDelimIndex(argumentList));
+      char *argument_list = extractArgList(command, findDelimIndex(command)); 
+      char *argument = extractArg(argument_list, findDelimIndex(argument_list));
       if (strcmp(argument, "echo") == 0) {
         printf("%s is a shell builtin\n", argument);
       } else if (strcmp(argument, "exit") == 0) {
@@ -65,6 +60,7 @@ int main(int argc, char *argv[]) {
       } else {
           printf("%s: input not found\n", argument);
       }
+      free(argument_list);
       free(argument);
     } else if (strcmp(input, "exit") == 0) {
         exit(0);
