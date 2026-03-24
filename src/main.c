@@ -56,14 +56,15 @@ char* extractArgList(const char *command) {
 }
 
 //parse through a string (command) to seperate using a delimeter
-char* tokenize(char *command, const char *delim) {
+void tokenize(char *command, const char *delim) {
   char *token;
+  char *savedpos;
 
-  token = strtok_r(command, delim, &token);
+  token = strtok_r(command, delim, &savedpos);
 
   while (token != NULL) {
     printf("%s\n", token);
-    token = strtok_r(NULL, delim, &token);
+    token = strtok_r(NULL, delim, &savedpos);
   }
 }
 
@@ -91,7 +92,7 @@ int main(int argc, char *argv[]) {
         printf("%s is a shell builtin\n", argument_list);
       } else {
         if (path) {
-            printf(tokenize("example/path:/second/path:/idk", ":;"));
+            printf(tokenize("path", ":;"));
       
 
 
