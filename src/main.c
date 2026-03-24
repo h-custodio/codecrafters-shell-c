@@ -55,7 +55,8 @@ char* extractArgList(const char *command) {
   return arg_list;
 }
 
-char* tokenize(const char *command, const char *delim) {
+//parse through a string (command) to seperate using a delimeter
+char* tokenize(char *command, const char *delim) {
   char *token;
 
   strtok_r(command, delim, token);
