@@ -62,7 +62,7 @@ char* tokenize(char *command, const char *delim) {
   strtok_r(command, delim, &token);
 
   while (token != NULL) {
-    printf("%s\n", token);
+    printf("%s\n", &token);
     token = strtok_r(NULL, delim, &token);
   }
 }
