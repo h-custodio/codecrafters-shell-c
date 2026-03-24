@@ -2,11 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int findDelimIndex (const char *input) {
-  return strcspn(input, " ");
-}
-
-// Extract the a substring from the input
+// Extract a substring from the input
 char* extractArg(const char *input) {
   //skip leading space
   while (*input == ' ') {
@@ -59,6 +55,17 @@ char* extractArgList(const char *command) {
   return arg_list;
 }
 
+char* tokenize(const char *command, const char *delim) {
+  char *token;
+
+  strtok_r(command, delim, token);
+
+  while (token) {
+    printf("%s\n", token);
+    token = strtok_r(NULL, delim, token);
+  }
+}
+
 int main(int argc, char *argv[]) {
   // Flush after every printf
   setbuf(stdout, NULL);
@@ -83,7 +90,15 @@ int main(int argc, char *argv[]) {
         printf("%s is a shell builtin\n", argument_list);
       } else {
         if (path) {
-          printf(path);
+            printf(tokenize(path, ";;"));
+      
+
+
+
+
+
+
+
         } else {
           printf("%s: not found\n", argument_list);
         }
@@ -92,7 +107,9 @@ int main(int argc, char *argv[]) {
     } else if (strcmp(input, "exit") == 0) {
         exit(0);
     } else if (strcmp(command, "echo") == 0) {
-        printf("%s\n", extractArgList(input));
+        char *args = extractArgList(input);
+        printf("%s\n", args);
+        free(args);
     } else {
         printf("%s: command not found\n", input);
     }
