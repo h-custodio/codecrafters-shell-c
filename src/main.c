@@ -91,7 +91,7 @@ int main(int argc, char *argv[]) {
         printf("%s is a shell builtin\n", argument_list);
       } else {
         if (path) {
-            printf(tokenize(path, ":;"));
+            printf(tokenize("example/path:/second/path:/idk", ":;"));
       
 
 
