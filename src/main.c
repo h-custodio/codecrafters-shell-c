@@ -57,11 +57,11 @@ char* extractArgList(const char *command) {
 
 //parse through a string (command) to seperate using a delimeter
 char* tokenize(char *command, const char *delim) {
-  char *token;
+  char **token;
 
   strtok_r(command, delim, token);
 
-  while (token) {
+  while (token != NULL) {
     printf("%s\n", token);
     token = strtok_r(NULL, delim, token);
   }
