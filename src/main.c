@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
         if (path != NULL) {
             char **token_path = (tokenize(path, "PATH_DELIMITER"));
             for (int i = 0; token_path[i] != NULL; i++) {
-              if (access(token_path, X_OK)) {
+              if (access(token_path[i], X_OK)) {
                 printf("%s is %s", extractArg, token_path);
                 break;
               } 
