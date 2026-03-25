@@ -127,7 +127,6 @@ int main(int argc, char *argv[]) {
       } else {
         if (path != NULL) {
           char **token_path = (tokenize(path, ":"));
-          char *messa
           for (int i = 0; token_path[i] != NULL; i++) {
             if (strcmp(token_path[i], extractArg(argument_list)) == 0 && access(token_path[i], X_OK)) {
               printf("%s is %s\n", extractArg(argument_list), token_path);
