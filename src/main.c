@@ -132,8 +132,8 @@ int main(int argc, char *argv[]) {
               printf("%s is %s\n", extractArg(argument_list), token_path);
               break;
             } 
-            printf(token_path[i]);
-            printf("%s: command not found\n", extractArg(argument_list));
+            //printf(token_path[i]);
+            //printf("%s: command not found\n", extractArg(argument_list));
           }
         } else {
           printf("%s: not found\n", argument_list);
