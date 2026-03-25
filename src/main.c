@@ -67,7 +67,7 @@ char** tokenize(char *command, const char *delim) {
 
   while (token != NULL) {
     // slots the token into char* array (string array)
-    printf(token);
+    printf("%s\n",token);
     args[arg_count++] = token;
     // Continue to parse from one token to next from saved position
     token = strtok_r(NULL, delim, &savedpos);
