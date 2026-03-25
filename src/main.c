@@ -132,6 +132,7 @@ int main(int argc, char *argv[]) {
               printf("%s is %s", extractArg(argument_list), token_path);
               break;
             } 
+            printf(token_path[i]);
             printf("%s: command not found\n", extractArg(argument_list));
           }
         } else {
