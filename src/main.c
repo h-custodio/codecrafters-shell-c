@@ -6,7 +6,12 @@
 
 
 // THIS PROGRAM DOES NOT RUN ON WINDOWS OS
-// TODO: Refactor for cleaner and more efficient code later
+/* TODO: 
+    -refactor for cleaner and more efficient code later
+    -reconsider using snprint() to manage buffer when printing
+    -double check memory management
+    -implement graceful error handling
+*/
 
 // Extract a substring from the input
 char* extractArg(const char *input) {
@@ -81,7 +86,7 @@ int printExePath(char **token_path, char *command) {
     free(full_path);
   }
 
-  printf("%s: command not found\n", command);
+  printf("%s: not found\n", command);
   return 1;
 }
 
