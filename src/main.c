@@ -98,7 +98,11 @@ int main(int argc, char *argv[]) {
         printf("%s is a shell builtin\n", argument_list);
       } else {
         if (path) {
-            printf(tokenize(path, ":;"));
+            char **token_path = (tokenize(path, ":;"));
+            int arg_count = 0;
+            while (strcmp(token_path[arg_count], '\0') == 0) {
+              printf(token_path[arg_count++]);
+            }
       
 
 
