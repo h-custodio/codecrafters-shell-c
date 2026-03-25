@@ -122,14 +122,16 @@ int main(int argc, char *argv[]) {
     if (strcmp(command, "type") == 0) {
       char *argument_list = extractArgList(input); 
       char *path = getenv("PATH");
+
       if (strcmp(argument_list, "echo") == 0 || strcmp(argument_list, "exit") == 0 || strcmp(argument_list, "type") == 0) {
         printf("%s is a shell builtin\n", argument_list);
       } else {
         if (path != NULL) {
           char **token_path = (tokenize(path, ":"));
+
           for (int i = 0; token_path[i] != NULL; i++) {
-            if (strcmp(token_path[i], extractArg(argument_list)) == 0 && access(token_path[i], X_OK)) {
-              printf("%s is %s\n", extractArg(argument_list), token_path);
+            if (access(token_path[i], X_OK) == 0) {
+              printf("%s is %s\n", extractArg(argument_list), token_path[i]);
               break;
             } 
             //printf(token_path[i]);
@@ -140,6 +142,7 @@ int main(int argc, char *argv[]) {
         }
       }
       free(argument_list);
+      
     } else if (strcmp(input, "exit") == 0) {
         exit(0);
     } else if (strcmp(command, "echo") == 0) {
