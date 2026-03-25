@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#ifdef _WIN32
-    #define PATH_DELIMITER ';'
-#else
-    #define PATH_DELIMITER ':'
-#endif
+#include <dirent.h>
+
+
+// THIS PROGRAM DOES NOT RUN ON WINDOWS OS
+// TODO: Refactor for cleaner and more efficient code later
 
 // Extract a substring from the input
 char* extractArg(const char *input) {
@@ -61,8 +61,31 @@ char* extractArgList(const char *command) {
   return arg_list;
 }
 
+// Checks if exe file exists and if it has executable permisison
+int printExePath(char **token_path, char *command) {
+  for (int i = 0; token_path[i] != NULL; i++) {
+    char *full_path = malloc(strlen(token_path[i]) + strlen(command) + 2);
+
+    if (!full_path) {
+      fprintf(stderr, "malloc failed\n");
+      return 1;
+    }
+    sprintf(full_path, "%s/%s", token_path[i], command);
+
+    if (access(full_path, X_OK) == 0) {
+      printf("%s is %s\n", command, full_path);
+      free(full_path);
+      return 0;
+    }
+
+    free(full_path);
+  }
+
+  printf("%s: command not found\n", command);
+  return 1;
+}
+
 // Parse through a string (command) to separate using a delimiter
-// REFACTOR LATER FOR BETTER READABILITY
 char** tokenize(char *command, const char *delim) {
   char *token, *savedpos;
   int capacity = 50;
@@ -128,17 +151,7 @@ int main(int argc, char *argv[]) {
       } else {
         if (path != NULL) {
           char **token_path = (tokenize(path, ":"));
-
-          for (int i = 0; token_path[i] != NULL; i++) {
-            if (access(token_path[i], X_OK) == 0) {
-              printf("%s is %s\n", extractArg(argument_list), token_path[i]);
-              break;
-            } 
-            //printf(token_path[i]);
-            //printf("%s: command not found\n", extractArg(argument_list));
-          }
-        } else {
-          printf("%s: not found\n", argument_list);
+          printExePath(token_path, extractArg(argument_list));
         }
       }
       free(argument_list);
