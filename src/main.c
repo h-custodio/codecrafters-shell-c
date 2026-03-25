@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#ifdef _WIN32
+    #define PATH_DELIMITER ';'
+#else
+    #define PATH_DELIMITER ':'
+#endif
 
 // Extract a substring from the input
 char* extractArg(const char *input) {
@@ -55,23 +61,44 @@ char* extractArgList(const char *command) {
   return arg_list;
 }
 
-// Parse through a string (command) to seperate using a delimeter
+// Parse through a string (command) to separate using a delimiter
+// REFACTOR LATER FOR BETTER READABILITY
 char** tokenize(char *command, const char *delim) {
-  char *token;
-  char *savedpos;
-  char **args = malloc(100 * strlen(command));
+  char *token, *savedpos;
+  int capacity = 50;
+  char **args = malloc((capacity + 1) * sizeof(char *));
   int arg_count = 0;
+  char *copy = strdup(command);
 
-  // Finds the first instance of word seperated by delimeter
-  token = strtok_r(command, delim, &savedpos);
+  // Finds the first instance of word separated by delimiter
+  token = strtok_r(copy, delim, &savedpos);
 
   while (token != NULL) {
-    // slots the token into char* array (string array)
-    //printf("%s\n",token);
-    args[arg_count++] = token;
+    if (arg_count == capacity) {
+      capacity *= 2;
+      char **temp = realloc(args, (capacity+1) * sizeof(char *)); 
+
+      if (temp == NULL) {
+        printf("cannot reallocate more memory for tokens\n");  
+
+        for (int i = 0; i < arg_count; i++) {
+          free(args[i]);
+        }
+
+        free(args);
+        return NULL;  
+      } else {
+        args = temp;   
+      }
+    }
+
+    args[arg_count++] = strdup(token);
     // Continue to parse from one token to next from saved position
     token = strtok_r(NULL, delim, &savedpos);
   }
+
+  args[arg_count] = NULL;
+  free(copy);
   return args;
 }
 
@@ -95,13 +122,17 @@ int main(int argc, char *argv[]) {
     if (strcmp(command, "type") == 0) {
       char *argument_list = extractArgList(input); 
       char *path = getenv("PATH");
-      if (strcmp(argument_list, "grep") == 0 || strcmp(argument_list, "echo") == 0 || strcmp(argument_list, "exit") == 0 || strcmp(argument_list, "type") == 0) {
+      if (strcmp(argument_list, "echo") == 0 || strcmp(argument_list, "exit") == 0 || strcmp(argument_list, "type") == 0) {
         printf("%s is a shell builtin\n", argument_list);
       } else {
         if (path != NULL) {
-            char **token_path = (tokenize(path, ":;"));
+            char **token_path = (tokenize(path, "PATH_DELIMITER"));
             for (int i = 0; token_path[i] != NULL; i++) {
-              printf("%s\n", token_path[i]);
+              if (access(token_path, X_OK)) {
+                printf("%s is %s", extractArg, token_path);
+                break;
+              } 
+
               }
 
         } else {
