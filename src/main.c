@@ -67,7 +67,7 @@ char** tokenize(char *command, const char *delim) {
 
   while (token != NULL) {
     // slots the token into char* array (string array)
-    printf("%s\n",token);
+    //printf("%s\n",token);
     args[arg_count++] = token;
     // Continue to parse from one token to next from saved position
     token = strtok_r(NULL, delim, &savedpos);
@@ -100,11 +100,10 @@ int main(int argc, char *argv[]) {
       } else {
         if (path != NULL) {
             char **token_path = (tokenize(path, ":;"));
-            int arg_count = 0;
-            while (strcmp(token_path[arg_count], '\0') == 0) {
-              printf(token_path[arg_count++]);
-            }
-      
+            for (int i = 0; token_path[i] != NULL; i++) {
+              printf("%s\n", token_path[i]);
+              }
+
         } else {
           printf("%s: not found\n", argument_list);
         }
