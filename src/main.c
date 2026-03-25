@@ -59,7 +59,7 @@ char* extractArgList(const char *command) {
 char** tokenize(char *command, const char *delim) {
   char *token;
   char *savedpos;
-  char **args = malloc(1024);
+  char **args = malloc(100 * strlen(command));
   int arg_count = 0;
 
   // Finds the first instance of word seperated by delimeter
@@ -67,6 +67,7 @@ char** tokenize(char *command, const char *delim) {
 
   while (token != NULL) {
     // slots the token into char* array (string array)
+    printf(token);
     args[arg_count++] = token;
     // Continue to parse from one token to next from saved position
     token = strtok_r(NULL, delim, &savedpos);
@@ -97,20 +98,13 @@ int main(int argc, char *argv[]) {
       if (strcmp(argument_list, "grep") == 0 || strcmp(argument_list, "echo") == 0 || strcmp(argument_list, "exit") == 0 || strcmp(argument_list, "type") == 0) {
         printf("%s is a shell builtin\n", argument_list);
       } else {
-        if (path) {
+        if (path != NULL) {
             char **token_path = (tokenize(path, ":;"));
             int arg_count = 0;
             while (strcmp(token_path[arg_count], '\0') == 0) {
               printf(token_path[arg_count++]);
             }
       
-
-
-
-
-
-
-
         } else {
           printf("%s: not found\n", argument_list);
         }
