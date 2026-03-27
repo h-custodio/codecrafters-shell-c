@@ -135,8 +135,10 @@ int main(int argc, char *argv[]) {
     fgets(input, sizeof(input), stdin);
     input[strcspn(input, "\n")] = '\0';
     
+    // Initialized reusable variables
     char** argument = tokenize(input, " ");
     char *path = getenv("PATH");
+    char **token_path = (tokenize(path, ":"));
 
     //  Conditionals
     if (strcmp(argument[0], "type") == 0) {
@@ -145,12 +147,8 @@ int main(int argc, char *argv[]) {
 
       } else {
         if (path != NULL) {
-          char **token_path = (tokenize(path, ":"));
-          if (printExePath(token_path, argument[1]) == 0) {
-            execute(argument[0],argument);
-          }
+          printExePath(token_path, argument[1])  
         }
-
       }
     } else if (strcmp(input, "exit") == 0) {
         exit(0);
@@ -159,8 +157,11 @@ int main(int argc, char *argv[]) {
         printArgList(argument);
 
     } else {
-        printf(path);
+      if (path != NULL) {
+        execute(argument[0],argument);
+      } else {
         printf("%s: command not found\n", input);
+      }
     }
 
     for (int i = 0; argument[i] != NULL; i++) {
