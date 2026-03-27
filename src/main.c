@@ -43,7 +43,7 @@ int printExePath(char **token_path, char *command) {
     sprintf(full_path, "%s/%s", token_path[i], command);
 
     if (access(full_path, X_OK) == 0) {
-      printf("%s is %s\n", command, full_path);
+      //printf("%s is %s\n", command, full_path);
       free(full_path);
       return 0;
     }
