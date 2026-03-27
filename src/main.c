@@ -57,7 +57,7 @@ int printExePath(char **token_path, char *command) {
 }
 
 int execute(char *command, char **argument) {
-  if (!command || !argument) {
+  if (!command || !argument || argument[1]) {
     printf("cannot execute NULL");
     return 1;
   }
