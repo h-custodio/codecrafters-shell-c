@@ -13,6 +13,7 @@
     -reconsider using snprint() to manage buffer when printing
     -double check memory management
     -implement graceful error handling
+    -double check perror()
 */
 
 // Prints the rest of the arguments excluding the first 
@@ -67,10 +68,10 @@ int execute(char *command, char **argument) {
   if (ret == 0) {
     // Child process
     execvp(command, argument);
-    perror("execvp");
+    //perror("execvp");
     exit(1);
   } else if (ret < 0) {
-    perror("fork");
+    //perror("fork");
     return 1;
   }
 
