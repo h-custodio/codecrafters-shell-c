@@ -3,6 +3,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 
 // THIS PROGRAM DOES NOT RUN ON WINDOWS OS (Because libraries used are for UNIX, since Codecrafter's remote servers are Linux based or something)
