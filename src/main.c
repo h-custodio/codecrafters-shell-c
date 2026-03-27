@@ -58,7 +58,7 @@ int printExePath(char **token_path, char *command) {
 
 int execute(char *command, char **argument) {
   if (!command || !argument || !argument[1]) {
-    printf("cannot execute NULL");
+    //printf("cannot execute NULL\n");
     return 1;
   }
 
@@ -159,7 +159,9 @@ int main(int argc, char *argv[]) {
 
     } else {
       if (path != NULL) {
-        execute(argument[0],argument);
+        if (execute(argument[0], argument) == 1) {
+          printf("%s: command not found\n", input);
+        }
       } else {
         printf("%s: command not found\n", input);
       }
