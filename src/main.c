@@ -147,7 +147,7 @@ int main(int argc, char *argv[]) {
 
       } else {
         if (path != NULL) {
-          printExePath(token_path, argument[1])  
+          printExePath(token_path, argument[1]);
         }
       }
     } else if (strcmp(input, "exit") == 0) {
