@@ -53,24 +53,31 @@ int printExePath(char **token_path, char *command) {
   return 1;
 }
 
-int execute(const char *command, char const **arguments) {
+int execute(char *command, char **argument) {
+  if (!command || !argument) {
+    printf("cannot execute NULL");
+    return 1;
+  }
+
   int ret;
-  //for (int i = 0; token_path[i] != NULL; i++) {
-    ret = fork();
+  ret = fork();
 
-    if (ret == 0) {
-      // Child process
-      execvp(command, arguments);
-      perror("execvp");
-      return 1;
-    } else if (ret < 0) {
-      perror("fork");
-      return 1;
-    }
+  if (ret == 0) {
+    // Child process
+    execvp(command, argument);
+    perror("execvp");
+    exit(1);
+  } else if (ret < 0) {
+    perror("fork");
+    return 1;
+  }
 
+  //compares console's pid to current process's pid to check if background
+  if (tcgetpgrp(STDOUT_FILENO) == getpgrp()) {
+    waitpid(ret, NULL, 0);
+  }
 
-  printf("%s: not found\n", command);
-  return 1;
+  return 0;
 }
 
 // Parse through a string (command) to separate using a delimiter
@@ -154,6 +161,9 @@ int main(int argc, char *argv[]) {
         printf("%s: command not found\n", input);
     }
 
+    for (int i = 0; argument[i] != NULL; i++) {
+      free(argument[i]);
+    }
     free(argument);
   }
   return 0;
