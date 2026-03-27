@@ -53,7 +53,7 @@ int printExePath(char **token_path, char *command) {
   return 1;
 }
 
-int execute(char const *command, char const *arguments) {
+int execute(const char *command, char const **arguments) {
   int ret;
   //for (int i = 0; token_path[i] != NULL; i++) {
     ret = fork();
@@ -138,8 +138,9 @@ int main(int argc, char *argv[]) {
       } else {
         if (path != NULL) {
           char **token_path = (tokenize(path, ":"));
-          //printExePath(token_path, argument[1]);
-          execute(argument[0],argument);
+          if (printExePath(token_path, argument[1])) {
+            execute(argument[0],argument);
+          }
         }
 
       }
