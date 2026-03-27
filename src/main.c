@@ -43,7 +43,7 @@ int printExePath(char **token_path, char *command) {
     sprintf(full_path, "%s/%s", token_path[i], command);
 
     if (access(full_path, X_OK) == 0) {
-      //printf("%s is %s\n", command, full_path);
+      printf("%s is %s\n", command, full_path);
       free(full_path);
       return 0;
     }
@@ -135,7 +135,6 @@ int main(int argc, char *argv[]) {
     fgets(input, sizeof(input), stdin);
     input[strcspn(input, "\n")] = '\0';
     
-
     char** argument = tokenize(input, " ");
     char *path = getenv("PATH");
 
@@ -160,6 +159,7 @@ int main(int argc, char *argv[]) {
         printArgList(argument);
 
     } else {
+        printf(path);
         printf("%s: command not found\n", input);
     }
 
