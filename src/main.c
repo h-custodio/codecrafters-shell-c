@@ -147,7 +147,7 @@ int main(int argc, char *argv[]) {
       } else {
         if (path != NULL) {
           char **token_path = (tokenize(path, ":"));
-          if (printExePath(token_path, argument[1])) {
+          if (printExePath(token_path, argument[1]) == 0) {
             execute(argument[0],argument);
           }
         }
