@@ -159,7 +159,7 @@ int main(int argc, char *argv[]) {
     //  Conditionals
     if (strcmp(argument[0], "type") == 0) {
       // Prints if builtin command
-      if (argument[1] && (strcmp(argument[1], "echo") == 0 || strcmp(argument[1], "exit") == 0 ||strcmp(argument[1], "type" ||strcmp(argument[1], "pwd") == 0)) {
+      if (argument[1] && (strcmp(argument[1], "echo") == 0 || strcmp(argument[1], "exit") == 0 || strcmp(argument[1], "type" ) == 0 ||strcmp(argument[1], "type" ) == 0)) {
         printf("%s is a shell builtin\n", argument[1]);
 
       } else {
