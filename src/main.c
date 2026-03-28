@@ -7,7 +7,7 @@
 #include <sys/wait.h>
 
 
-// THIS PROGRAM DOES NOT RUN ON WINDOWS OS (Because libraries used are for UNIX, since Codecrafter's remote servers are Linux based or something)
+// THIS PROGRAM DOES NOT RUN ON WINDOWS OS (Because libraries used are for UNIX, since Codecrafter's remote servers are Unix-like)
 /* TODO: 
     -refactor for cleaner and more efficient code later
     -reconsider using snprint() to manage buffer when printing
@@ -54,6 +54,21 @@ int printExePath(char **token_path, char *command) {
 
   printf("%s: not found\n", command);
   return 1;
+}
+
+
+// Prints path of current directory
+// Fixed char size for ease of use and safety, large paths could break this function 
+int pwd() {
+  char current_dir[1024];
+
+  if (!getcwd(current_dir, sizeof(current_dir))) {
+    printf("current directory is null\n");
+    return 1;
+  }
+
+  printf(getcwd(current_dir, sizeof(current_dir)));
+  return 0;
 }
 
 int execute(char *command, char **argument) {
@@ -143,11 +158,13 @@ int main(int argc, char *argv[]) {
 
     //  Conditionals
     if (strcmp(argument[0], "type") == 0) {
+      // Prints if builtin command
       if (argument[1] && (strcmp(argument[1], "echo") == 0 || strcmp(argument[1], "exit") == 0 ||strcmp(argument[1], "type") == 0)) {
         printf("%s is a shell builtin\n", argument[1]);
 
       } else {
         if (path != NULL) {
+          // Prints path of command if it exists
           printExePath(token_path, argument[1]);
         }
       }
@@ -157,8 +174,13 @@ int main(int argc, char *argv[]) {
     } else if (strcmp(argument[0], "echo") == 0) {
         printArgList(argument);
 
+    } else if (strcmp(argument[0], "pwd") == 0) {
+      // Prints path of current directory
+      pwd();
+
     } else {
       if (path != NULL) {
+        // Executes a program if found
         if (execute(argument[0], argument) == 1) {
           printf("%s: command not found\n", input);
         }
@@ -167,6 +189,7 @@ int main(int argc, char *argv[]) {
       }
     }
 
+    // Frees the "strings" in the argument array then the array itself
     for (int i = 0; argument[i] != NULL; i++) {
       free(argument[i]);
     }
