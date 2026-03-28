@@ -67,7 +67,7 @@ int pwd() {
     return 1;
   }
 
-  printf(getcwd(current_dir, sizeof(current_dir)));
+  printf("%s\n", buffer);
   return 0;
 }
 
