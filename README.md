@@ -1,34 +1,7 @@
-[![progress-banner](https://backend.codecrafters.io/progress/shell/f01a225b-38e1-45db-97e2-3f3548b4d46e)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
+This project was created as part of Codecrafters’ “Make a Shell” challenge in C. The main goal was to build a basic command-line shell from scratch as a learning exercise, with a focus on introducing core systems programming concepts in a practical way.
 
-This is a starting point for C solutions to the
-["Build Your Own Shell" Challenge](https://app.codecrafters.io/courses/shell/overview).
+Through this project, I explored how a shell actually works under the hood—how user input is read, interpreted, and turned into commands the operating system can execute. It provided hands-on experience with low-level programming in C, especially around process management, command parsing, and interacting directly with the operating system.
 
-In this challenge, you'll build your own POSIX compliant shell that's capable of
-interpreting shell commands, running external programs and builtin commands like
-cd, pwd, echo and more. Along the way, you'll learn about shell command parsing,
-REPLs, builtin commands, and more.
+A key part of the challenge was understanding how commands are executed by spawning new processes and handling their lifecycle, as well as working with system calls and standard Unix-like behavior. It also helped reinforce concepts like reading from standard input, writing to standard output, handling errors, and dealing with program arguments.
 
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
-
-# Passing the first stage
-
-The entry point for your `shell` implementation is in `src/main.c`. Study and
-uncomment the relevant code, then run the command below to execute the tests on
-our servers:
-
-```sh
-codecrafters submit
-```
-
-Time to move on to the next stage!
-
-# Stage 2 & beyond
-
-Note: This section is for stages 2 and beyond.
-
-1. Ensure you have `cmake` installed locally
-1. Run `./your_program.sh` to run your program, which is implemented in
-   `src/main.c`.
-1. Run `codecrafters submit` to submit your solution to CodeCrafters. Test
-   output will be streamed to your terminal.
+Overall, the project served as an early introduction to systems programming by breaking down how a simple shell operates, helping build a stronger foundation for understanding operating systems, compilers, and low-level software design.
